@@ -20,6 +20,7 @@ def obter_modalidades(data):
     
     # Ordenar alfabeticamente as modalidades e retornar como uma lista
     modalidades_ordenadas = sorted(modalidades_unicas)
+    
     return modalidades_ordenadas
 
 def percentagem_aptos_inaptos(data):
@@ -36,7 +37,7 @@ def percentagem_aptos_inaptos(data):
     
     return (percentagem_aptos, percentagem_inaptos)
 
-def faixas_etarias(data):
+def faixas_etarias(data):   
     faixas_etarias = {
         '[20-24]': [],
         '[25-29]': [],
@@ -57,47 +58,48 @@ def faixas_etarias(data):
             faixas_etarias['[30-34]'].append((primeiro_nome, ultimo_nome))
         elif 35 <= idade <= 39:
             faixas_etarias['[35-39]'].append((primeiro_nome, ultimo_nome))
-        else:
-            print("Não pertence a nenhuma faixa")
 
-    # Escrever os nomes dos atletas num arquivo, dividido por faixas etárias e cada uma com o nº de atletas
-    with open('TPC1/nomes_por_faixa.txt', 'w', encoding='utf-8') as file:
-        for faixa_etaria, nomes in faixas_etarias.items():
-            file.write(f"\nFaixa etária {faixa_etaria}: {len(nomes)} atletas nesta faixa.\n")
-            for primeiro_nome, ultimo_nome in nomes:
-                file.write(f"{primeiro_nome} {ultimo_nome}\n")
+    return faixas_etarias
 
 def main():
     file_path = '../PL2024/TPC1/emd.csv'
     header, data = parse_csv(file_path)
     
-    # Obter a lista ordenada alfabeticamente das modalidades desportivas
     modalidades = obter_modalidades(data)
     
-    print("\n")
-    
-    # Imprimir as modalidades
-    print("Lista ordenada alfabeticamente das modalidades desportivas:")
-    for modalidade in modalidades:
-        print("- " + modalidade)
+    (percentagem_aptos, percentagem_inaptos) = percentagem_aptos_inaptos(data)
         
-    print("\n")
+    faixas_etaria = faixas_etarias(data)
+
+    with open('TPC1/results.txt', 'w', encoding='utf-8') as file:
+        file.write("\n")
+                
+        file.write(f"Lista ordenada alfabeticamente das modalidades desportivas:\n")
+        for modalidade in modalidades:
+            file.write(f"- " +modalidade+ "\n")
+    
+        file.write("\n")
+    
+        file.write(f"Percentagem de Atletas Aptos: " +str(percentagem_aptos)+ "%\n")
+        file.write(f"Percentagem de Atletas Inaptos: " +str(percentagem_inaptos)+ "%\n")
         
-    (aptos, inaptos) = percentagem_aptos_inaptos(data)
-    print("Percentagem de Atletas Aptos: " +str(aptos)+ "%")
-    print("Percentagem de Atletas Inaptos: " +str(inaptos)+ "%")
-    
-    print("\n")
-    idades = [int(row[5]) for row in data]
-    idade_min = min(idades)
-    idade_max = max(idades)
-    
-    print("Idade Mínima: " +str(idade_min))
-    print("Idade Máxima: " +str(idade_max))
-    
-    print("\n")
-    
-    faixas_etarias(data)
+        file.write("\n")
+        
+        # Escrever os nomes dos atletas num arquivo, dividido por faixas etárias e cada uma com o nº de atletas
+        idades = [int(row[5]) for row in data]
+        idade_min = min(idades)
+        idade_max = max(idades)
+        file.write(f"Idade Mínima: " +str(idade_min)+ "\n")
+        file.write(f"Idade Máxima: " +str(idade_max)+ "\n") 
+        
+        file.write("\n")
+         
+        for faixa, nomes in faixas_etaria.items():
+            file.write(f"\nFaixa etária {faixa}: {len(nomes)} atletas nesta faixa.\n")
+            for primeiro_nome, ultimo_nome in nomes:
+                file.write(f"{primeiro_nome} {ultimo_nome}\n")
+                
+        file.write("\n")
 
 # Chamada da função main
 if __name__ == "__main__":

@@ -1,4 +1,28 @@
 
+Lista ordenada alfabeticamente das modalidades desportivas:
+- Andebol
+- Atletismo
+- BTT
+- Badminton
+- Basquetebol
+- Ciclismo
+- Dança
+- Equitação
+- Esgrima
+- Futebol
+- Karaté
+- Orientação
+- Parapente
+- Patinagem
+- Triatlo
+
+Percentagem de Atletas Aptos: 54.0%
+Percentagem de Atletas Inaptos: 46.0%
+
+Idade Mínima: 21
+Idade Máxima: 35
+
+
 Faixa etária [20-24]: 80 atletas nesta faixa.
 Cheryl Berger
 Marla Kelley
@@ -306,3 +330,4 @@ Hodge Maxwell
 Anita Lyons
 Dana Morrison
 Price Hardin
+
