@@ -47,7 +47,7 @@
 13. **LA(F → num)**: `num`
 14. **LA(F → ( E ))**: `(`
 
-## Interseções dos Lookahead:
+## Interseções dos Lookahead Sets:
 
 1. **LA(1) ∩ LA(2)** = {`var`, `?`, `!`} ∩ {`$`} = {}
 
