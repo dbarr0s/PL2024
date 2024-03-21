@@ -10,7 +10,7 @@
 - **Leitura**: `?`
 - **Impressão**: `!`
 
-## Não-Terminais
+## Não-Terminais:
 
 - **Programa**: `P`
 - **Declaração** (variável ou um comando de leitura/impressão): `D`
@@ -18,7 +18,7 @@
 - **Termo**: `T`
 - **Fator** (uma variável ou uma expressão entre parênteses): `F`
 
-## Produções
+## Produções:
 
 1. `P -> D P | ε`
 2. `D -> var = E | ? var | ! E`
@@ -26,7 +26,7 @@
 4. `T -> F | * F T | / F T`
 5. `F -> var | num | ( E )`
 
-## Lookahead Sets
+## Lookahead Sets:
 
 1. **LA(P → D P)**: `var` `?` `!`
 2. **LA(P → ε)**: `$` (espaço)
@@ -47,7 +47,7 @@
 13. **LA(F → num)**: `num`
 14. **LA(F → ( E ))**: `(`
 
-## Interseções dos Lookahead
+## Interseções dos Lookahead:
 
 1. **LA(1) ∩ LA(2)** = {`var`, `?`, `!`} ∩ {`$`} = {}
 
